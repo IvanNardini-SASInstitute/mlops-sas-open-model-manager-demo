@@ -1,4 +1,4 @@
 .vscode
-project\.local\share\jupyter
+project/.local/share/jupyter
 PublishModelCreatePrivateDockerDestination.ipynb
 QuickStartTutorial
