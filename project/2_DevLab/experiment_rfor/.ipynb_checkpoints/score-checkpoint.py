@@ -14,8 +14,8 @@ def score (CLAGE, CLNO, DEBTINC, DELINQ, DEROG, JOB, LOAN, MORTDUE, NINQ, REASON
 
     # Construct the input array for scoring (the first term is for the Intercept)
     input_array = pd.DataFrame([[CLAGE, CLNO, DEBTINC, DELINQ, DEROG, JOB, LOAN, MORTDUE, NINQ, REASON, VALUE, YOJ]],
-        columns = ['CLAGE', 'CLNO', 'DEBTINC', 'DELINQ', 'DEROG', 'JOB', 'LOAN', 'MORTDUE', 'NINQ', 'REASON', 'VALUE', 'YOJ'])
-#     ,dtype = float
+        columns = ['CLAGE', 'CLNO', 'DEBTINC', 'DELINQ', 'DEROG', 'JOB', 'LOAN', 'MORTDUE', 'NINQ', 'REASON', 'VALUE', 'YOJ'],
+        dtype = float)
 
     # Calculate the predicted probabilities
     _predProb = _thisModelFit.predict_proba(input_array)

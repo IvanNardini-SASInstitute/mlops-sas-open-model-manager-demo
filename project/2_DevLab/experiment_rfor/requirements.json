@@ -1,10 +1,6 @@
 
 [   
     {
-        "step":"unistall scikit-learn ",
-        "command":"pip uninstall scikit-learn"
-     },
-    {
         "step":"install scikit-learn==0.21.3 ",
         "command":"pip install -U scikit-learn==0.21.3"
      },

@@ -886,8 +886,8 @@ def generate_fileMetadata(scorefilename, picklename, outdir, debug=False):
     
     #File name lists
     
-    jsonroles = ('inputVariables', 'outputVariables', 'score', 'python pickle')
-    jsonnames = ('inputVar.json', 'outputVar.json', scorefilename, picklename)
+    jsonroles = ('inputVariables', 'outputVariables', 'score', 'python pickle', 'scoreResource')
+    jsonnames = ('inputVar.json', 'outputVar.json', scorefilename, picklename, 'requirements.json')
     
     
     for role,name in zip(jsonroles, jsonnames):
