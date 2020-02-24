@@ -1,0 +1,19 @@
+
+[   
+    {
+        "step":"unistall scikit-learn ",
+        "command":"pip uninstall scikit-learn"
+     },
+    {
+        "step":"install scikit-learn==0.21.3 ",
+        "command":"pip install scikit-learn==0.21.3"
+     },
+    {
+        "step":"install xgboost ",
+        "command":"pip install xgboost"
+     },
+    {
+        "step":"install joblib ",
+        "command":"pip install joblib"
+     }
+]
