@@ -1,7 +1,9 @@
 // Jenkinsfile test me
 
 pipeline {
+
     agent none
+
     stages {
 
         // stage('Code Quality Test') {
@@ -141,18 +143,6 @@ pipeline {
 
                     // agent any
 
-                    // steps {
-
-                    //     script {
-
-                    //         docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
-                    //             docker.image('in92/devops_omm_intest:v1.2').inside("-u 0 --entrypoint='/pybox/app/startServer.sh'") {
-
-                    //                 sh("python --version")
-                    //             }
-                    //         }
-                    //     }
-
                     // }
 
                     agent {
@@ -161,15 +151,7 @@ pipeline {
                             args "-u 0 -p 9999:9999"
                         }
                     }
-                    // steps {
-
-                    //     sh "python --version"
-                    //     // sh("ls project/3_CI_CD/4_integration_test/model")
-                    //     // sh("python -W ignore ContainerWrapper.py -i project/3_CI_CD/4_integration_test/model/ivnard_sample.csv -o 1582581595.089225.csv")
-                    //     // sh(returnStdout: true, script: "if test -f 'project/3_CI_CD/4_integration_test/model/1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
-                    //     // sh("cat project/3_CI_CD/4_integration_test/model/1582581595.089225.csv")
-                    // }
-
+                    
                     // steps {
 
                     //     script {
@@ -238,89 +220,89 @@ pipeline {
                             echo 'Code failed the Unit test, please see logs.'
                         }
                     }
-            //     }
+                // }
             // }
         }
 
-        // stage('Model MetaData Quality Test') {
+        stage('Model MetaData Quality Test') {
 
-        //     parallel {
+            parallel {
 
-        //         stage('Validate inputVar.json file') {
+                stage('Validate inputVar.json file') {
 
-        //             agent {
-        //                 docker {
-        //                     image 'python:3-alpine' 
-        //                 }
-        //             }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
 
-        //             steps {
-        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/inputVar.json"
-        //             }
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/inputVar.json"
+                    }
 
-        //             post {
+                    post {
 
-        //             success {
-        //                     echo 'inputVar.json file successfully validated!'
-        //                 }
+                    success {
+                            echo 'inputVar.json file successfully validated!'
+                        }
 
-        //             failure {
-        //                     echo 'inputVar.json file failed the quality test, please see review them.'
-        //                 }
-        //             }
-        //         }
+                    failure {
+                            echo 'inputVar.json file failed the quality test, please see review them.'
+                        }
+                    }
+                }
 
-        //         stage('Validate outputVar.json file') {
+                stage('Validate outputVar.json file') {
 
-        //             agent {
-        //                 docker {
-        //                     image 'python:3-alpine' 
-        //                 }
-        //             }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
 
-        //             steps {
-        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/outputVar.json"
-        //             }
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/outputVar.json"
+                    }
 
-        //             post {
+                    post {
 
-        //             success {
-        //                     echo 'outputVar.json file successfully validated!'
-        //                 }
+                    success {
+                            echo 'outputVar.json file successfully validated!'
+                        }
 
-        //             failure {
-        //                     echo 'outputVar.json file failed the quality test, please see review them.'
-        //                 }
-        //             }
+                    failure {
+                            echo 'outputVar.json file failed the quality test, please see review them.'
+                        }
+                    }
 
-        //         }
+                }
 
-        //         stage('Validate fileMetadata.json file') {
+                stage('Validate fileMetadata.json file') {
 
-        //             agent {
-        //                 docker {
-        //                     image 'python:3-alpine' 
-        //                 }
-        //             }
+                    agent {
+                        docker {
+                            image 'python:3-alpine' 
+                        }
+                    }
 
-        //             steps {
-        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/fileMetadata.json"
-        //             }
+                    steps {
+                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/fileMetadata.json"
+                    }
 
-        //             post {
+                    post {
 
-        //             success {
-        //                     echo 'fileMetadata.json file successfully validated!'
-        //                 }
+                    success {
+                            echo 'fileMetadata.json file successfully validated!'
+                        }
 
-        //             failure {
-        //                     echo 'fileMetadata.json file failed the quality test, please see review them.'
-        //                 }
-        //             }
+                    failure {
+                            echo 'fileMetadata.json file failed the quality test, please see review them.'
+                        }
+                    }
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
         // stage('SAS Model Manager Repo service') {
 
