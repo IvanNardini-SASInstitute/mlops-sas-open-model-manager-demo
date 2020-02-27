@@ -151,6 +151,10 @@ pipeline {
                             args "-u 0 -p 9999:9999"
                         }
                     }
+
+                    steps {
+                        sh 'echo HELLOOOOOOOO'
+                    }
                     
                     // steps {
 
