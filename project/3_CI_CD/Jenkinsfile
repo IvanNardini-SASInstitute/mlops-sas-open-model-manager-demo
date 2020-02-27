@@ -148,7 +148,6 @@ pipeline {
                     agent {
                         docker {
                             image 'in92/devops_omm_intest:v1.3'
-                            // args "-p 9999:9999"
                         }
                     }
 
@@ -156,7 +155,7 @@ pipeline {
 
                         sh("pwd")
                         sh("ls")
-                        sh("cd ./project/3_CI_CD/4_integration_test/model")
+                        sh("cd project/3_CI_CD/4_integration_test/model")
                         sh("which python")
                         sh("ls")
                         // sh("python -W ignore ContainerWrapper.py -i ivnard_sample.csv -o 1582581595.089225.csv")
