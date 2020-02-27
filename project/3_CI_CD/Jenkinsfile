@@ -139,7 +139,7 @@ pipeline {
 
                 // stage("Run tests") {
 
-                    agent any
+                    // agent any
 
                     // steps {
 
@@ -171,13 +171,30 @@ pipeline {
                     //     // sh("cat project/3_CI_CD/4_integration_test/model/1582581595.089225.csv")
                     // }
 
+                    // steps {
+
+                    //     script {
+
+                    //         docker.image('in92/devops_omm_intest:v1.1').withRun('-p 9999:9999') { test ->
+                    //             docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh") {
+                    //                 sh 'while ping -h0.0.0.0 --silent; do sleep 1; done'
+                    //             }
+                    //         }
+                    //     }
+                    // }
+
                     steps {
 
                         script {
 
                             docker.image('in92/devops_omm_intest:v1.1').withRun('-p 9999:9999') { test ->
-                                docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh") {
-                                    sh 'while ping -h0.0.0.0 --silent; do sleep 1; done'
+                                docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
+                                }
+
+                            docker.image('in92/devops_omm_intest:v1.1').inside("--workdir=/home/test --link ${test.id}:test_score") {
+
+                                sh 'python --version'
+                                    
                                 }
                             }
                         }
