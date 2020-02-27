@@ -4,134 +4,134 @@ pipeline {
     agent none
     stages {
 
-        stage('Code Quality Test') {
+        // stage('Code Quality Test') {
 
-            parallel{
+        //     parallel{
 
-                stage('Score Code Quality Test') {
+        //         stage('Score Code Quality Test') {
 
-                    agent {
-                        docker {
-                            image 'in92/devops_pylint:v1.4' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'in92/devops_pylint:v1.4' 
+        //                 }
+        //             }
 
-                    steps{
-                        sh 'pylint --disable=C,R,W,E project/2_DevLab/experiment_rfor/score.py'
-                    }
+        //             steps{
+        //                 sh 'pylint --disable=C,R,W,E project/2_DevLab/experiment_rfor/score.py'
+        //             }
 
-                    post {
-                        success {
-                            echo "Score code file successfully passed the Code Quality Test!"
-                        }
-                        failure {
-                            echo "Code failed the quality test, please see logs."
-                        }
-                    }
-                }
+        //             post {
+        //                 success {
+        //                     echo "Score code file successfully passed the Code Quality Test!"
+        //                 }
+        //                 failure {
+        //                     echo "Code failed the quality test, please see logs."
+        //                 }
+        //             }
+        //         }
 
-                stage('Train Code Quality Test') {
+        //         stage('Train Code Quality Test') {
 
-                    agent {
-                        docker {
-                            image 'in92/devops_pylint:v1.4' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'in92/devops_pylint:v1.4' 
+        //                 }
+        //             }
 
-                    steps{
-                        sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
-                    }
+        //             steps{
+        //                 sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
+        //             }
 
-                    post {
-                        success {
-                            echo "Score code file successfully passed the Code Quality Test!"
-                        }
-                        failure {
-                            echo "Code failed the quality test, please see logs."
-                        }
-                    }
-                }
-            }
-        }  
+        //             post {
+        //                 success {
+        //                     echo "Score code file successfully passed the Code Quality Test!"
+        //                 }
+        //                 failure {
+        //                     echo "Code failed the quality test, please see logs."
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }  
 
-        stage('Code Validation Test') {
+        // stage('Code Validation Test') {
 
-            parallel {
+        //     parallel {
 
-                stage('Validate Score Code') {
+        //         stage('Validate Score Code') {
 
-                    agent {
-                        docker {
-                            image 'python:3-alpine' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'python:3-alpine' 
+        //                 }
+        //             }
 
-                    steps {
-                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
-                    }
+        //             steps {
+        //                 sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
+        //             }
 
-                    post {
+        //             post {
 
-                    success {
-                            echo 'Score code file successfully validated!'
-                        }
+        //             success {
+        //                     echo 'Score code file successfully validated!'
+        //                 }
 
-                    failure {
-                            echo 'Code failed the Validation test, please see logs.'
-                        }
-                    }
-                }
+        //             failure {
+        //                     echo 'Code failed the Validation test, please see logs.'
+        //                 }
+        //             }
+        //         }
 
-                stage('Validate Train Code') {
+        //         stage('Validate Train Code') {
 
-                    agent {
-                        docker {
-                            image 'python:3-alpine' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'python:3-alpine' 
+        //                 }
+        //             }
 
-                    steps {
-                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
-                    }
+        //             steps {
+        //                 sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
+        //             }
 
-                    post {
+        //             post {
 
-                    success {
-                            echo 'Train code file successfully validated!'
-                        }
+        //             success {
+        //                     echo 'Train code file successfully validated!'
+        //                 }
 
-                    failure {
-                            echo 'Code failed the Validation test, please see logs.'
-                        }
-                    }
-                }
-            }
-        }
+        //             failure {
+        //                     echo 'Code failed the Validation test, please see logs.'
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('Unit Test for Score code') {
+        // stage('Unit Test for Score code') {
 
-            agent {
-                docker {
-                    image 'in92/devops_pyunit:v1.1' 
-                    }
-            }
+        //     agent {
+        //         docker {
+        //             image 'in92/devops_pyunit:v1.1' 
+        //             }
+        //     }
 
-            steps {
-                sh 'python project/3_CI_CD/3_unit_test/unit_test_pipeline.py project/2_DevLab/experiment_rfor/rfor_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
-            }
+        //     steps {
+        //         sh 'python project/3_CI_CD/3_unit_test/unit_test_pipeline.py project/2_DevLab/experiment_rfor/rfor_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
+        //     }
 
-            post {
+        //     post {
 
-                success {
-                        echo 'Score code file successfully passed Unit Test!'
-                    }
+        //         success {
+        //                 echo 'Score code file successfully passed Unit Test!'
+        //             }
 
-                failure {
-                        echo 'Code failed the Unit test, please see logs.'
-                    }
-            }
+        //         failure {
+        //                 echo 'Code failed the Unit test, please see logs.'
+        //             }
+        //     }
 
-        }
+        // }
 
         stage('Integration test for Score code') {
 
@@ -139,7 +139,7 @@ pipeline {
 
                 // stage("Run tests") {
 
-                    agent any
+                    // agent any
 
                     // steps {
 
@@ -155,32 +155,32 @@ pipeline {
 
                     // }
 
-                    // agent {
-                    //     docker {
-                    //         image 'in92/devops_omm_intest:v1.2'
-                    //         args '-u 0 -p 9999:9999 --entrypoint=project/3_CI_CD/4_integration_test/app/startServer.sh'
-                    //     }
-                    //  }
+                    agent {
+                        docker {
+                            image 'in92/devops_omm_intest:v1.2'
+                            // args '-u 0 -p 9999:9999 --entrypoint=project/3_CI_CD/4_integration_test/app/startServer.sh'
+                        }
+                     }
 
-                    // steps {
+                    steps {
 
-                    //     sh "python --version"
+                        sh "python --version"
                     //     // sh("ls project/3_CI_CD/4_integration_test/model")
                     //     // sh("python -W ignore ContainerWrapper.py -i project/3_CI_CD/4_integration_test/model/ivnard_sample.csv -o 1582581595.089225.csv")
                     //     // sh(returnStdout: true, script: "if test -f 'project/3_CI_CD/4_integration_test/model/1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
                     //     // sh("cat project/3_CI_CD/4_integration_test/model/1582581595.089225.csv")
-                    // }
-
-                    steps {
-
-                        script {
-
-                            docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
-                                docker.image('in92/devops_omm_intest:v1.2').inside("-u 0 --entrypoint=/pybox/app/startServer.sh") {
-                                }
-                            }
-                        }
                     }
+
+                    // steps {
+
+                    //     script {
+
+                    //         docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
+                    //             docker.image('in92/devops_omm_intest:v1.2').inside("-u 0 --entrypoint=/pybox/app/startServer.sh") {
+                    //             }
+                    //         }
+                    //     }
+                    // }
 
                     // steps {
 
