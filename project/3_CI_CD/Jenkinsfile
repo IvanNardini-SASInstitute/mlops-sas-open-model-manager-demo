@@ -158,7 +158,6 @@ pipeline {
                     agent {
                         docker {
                             image 'in92/devops_omm_intest:v1.2'
-                            args '--entrypoint=/pybox/app/startServer.sh'
                         }
                      }
 
