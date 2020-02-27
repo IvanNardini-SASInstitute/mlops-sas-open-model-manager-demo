@@ -144,7 +144,7 @@ pipeline {
                     agent {
                         docker {
                             image 'in92/devops_omm_intest:v1.1'
-                            args '-u 0 --entrypoint=project/3_CI_CD/4_integration_test/pybox/app/startServer.sh'
+                            args '-u 0 --entrypoint=project/3_CI_CD/4_integration_test/app/startServer.sh'
                         }
                      }
 
