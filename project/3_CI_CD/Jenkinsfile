@@ -139,7 +139,7 @@ pipeline {
 
                 // stage("Run tests") {
 
-                    // agent any
+                    agent any
 
                     // steps {
 
@@ -155,33 +155,33 @@ pipeline {
 
                     // }
 
-                    agent {
-                        docker {
-                            image 'in92/devops_omm_intest:v1.2'
-                            args '-u 0 -p 9999:9999 --entrypoint=project/3_CI_CD/4_integration_test/app/startServer.sh'
-                        }
-                     }
-
-                    steps {
-
-                        sh "python --version"
-                        // sh("ls project/3_CI_CD/4_integration_test/model")
-                        // sh("python -W ignore ContainerWrapper.py -i project/3_CI_CD/4_integration_test/model/ivnard_sample.csv -o 1582581595.089225.csv")
-                        // sh(returnStdout: true, script: "if test -f 'project/3_CI_CD/4_integration_test/model/1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
-                        // sh("cat project/3_CI_CD/4_integration_test/model/1582581595.089225.csv")
-                    }
+                    // agent {
+                    //     docker {
+                    //         image 'in92/devops_omm_intest:v1.2'
+                    //         args '-u 0 -p 9999:9999 --entrypoint=project/3_CI_CD/4_integration_test/app/startServer.sh'
+                    //     }
+                    //  }
 
                     // steps {
 
-                    //     script {
-
-                    //         docker.image('in92/devops_omm_intest:v1.1').withRun('-p 9999:9999') { test ->
-                    //             docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh") {
-                    //                 sh 'while ping -h0.0.0.0 --silent; do sleep 1; done'
-                    //             }
-                    //         }
-                    //     }
+                    //     sh "python --version"
+                    //     // sh("ls project/3_CI_CD/4_integration_test/model")
+                    //     // sh("python -W ignore ContainerWrapper.py -i project/3_CI_CD/4_integration_test/model/ivnard_sample.csv -o 1582581595.089225.csv")
+                    //     // sh(returnStdout: true, script: "if test -f 'project/3_CI_CD/4_integration_test/model/1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
+                    //     // sh("cat project/3_CI_CD/4_integration_test/model/1582581595.089225.csv")
                     // }
+
+                    steps {
+
+                        script {
+
+                            docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
+                                docker.image('in92/devops_omm_intest:v1.2').inside("-u 0 --entrypoint=/pybox/app/startServer.sh") {
+                                    sh 'python --version'
+                                }
+                            }
+                        }
+                    }
 
                     // steps {
 
