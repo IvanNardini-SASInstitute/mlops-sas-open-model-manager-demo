@@ -148,7 +148,7 @@ pipeline {
                             docker.image('in92/devops_omm_intest:v1.1').withRun('-p 9999:9999') { test ->
                                 docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --workdir=/pybox/app --entrypoint=/pybox/app/startServer.sh") {
                                     
-                                    sh("ls project/3_CI_CD/4_integration_test/model")
+                                    sh("python --version")
                                 }
                             }
                         }
