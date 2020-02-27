@@ -2,7 +2,7 @@
 [   
     {
         "step":"install scikit-learn==0.21.3 ",
-        "command":"pip install - U scikit-learn==0.21.3"
+        "command":"pip install -U scikit-learn==0.21.3"
      },
     {
         "step":"install xgboost ",
