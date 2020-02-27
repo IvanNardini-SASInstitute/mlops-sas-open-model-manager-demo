@@ -6,134 +6,134 @@ pipeline {
 
     stages {
 
-        stage('Code Quality Test') {
+        // stage('Code Quality Test') {
 
-            parallel{
+        //     parallel{
 
-                stage('Score Code Quality Test') {
+        //         stage('Score Code Quality Test') {
 
-                    agent {
-                        docker {
-                            image 'in92/devops_pylint:v1.4' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'in92/devops_pylint:v1.4' 
+        //                 }
+        //             }
 
-                    steps{
-                        sh 'pylint --disable=C,R,W,E project/2_DevLab/experiment_rfor/score.py'
-                    }
+        //             steps{
+        //                 sh 'pylint --disable=C,R,W,E project/2_DevLab/experiment_rfor/score.py'
+        //             }
 
-                    post {
-                        success {
-                            echo "Score code file successfully passed the Code Quality Test!"
-                        }
-                        failure {
-                            echo "Code failed the quality test, please see logs."
-                        }
-                    }
-                }
+        //             post {
+        //                 success {
+        //                     echo "Score code file successfully passed the Code Quality Test!"
+        //                 }
+        //                 failure {
+        //                     echo "Code failed the quality test, please see logs."
+        //                 }
+        //             }
+        //         }
 
-                stage('Train Code Quality Test') {
+        //         stage('Train Code Quality Test') {
 
-                    agent {
-                        docker {
-                            image 'in92/devops_pylint:v1.4' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'in92/devops_pylint:v1.4' 
+        //                 }
+        //             }
 
-                    steps{
-                        sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
-                    }
+        //             steps{
+        //                 sh 'pylint --disable=C project/2_DevLab/experiment_rfor/train.py'
+        //             }
 
-                    post {
-                        success {
-                            echo "Score code file successfully passed the Code Quality Test!"
-                        }
-                        failure {
-                            echo "Code failed the quality test, please see logs."
-                        }
-                    }
-                }
-            }
-        }  
+        //             post {
+        //                 success {
+        //                     echo "Score code file successfully passed the Code Quality Test!"
+        //                 }
+        //                 failure {
+        //                     echo "Code failed the quality test, please see logs."
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }  
 
-        stage('Code Validation Test') {
+        // stage('Code Validation Test') {
 
-            parallel {
+        //     parallel {
 
-                stage('Validate Score Code') {
+        //         stage('Validate Score Code') {
 
-                    agent {
-                        docker {
-                            image 'python:3-alpine' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'python:3-alpine' 
+        //                 }
+        //             }
 
-                    steps {
-                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
-                    }
+        //             steps {
+        //                 sh 'python -m py_compile project/2_DevLab/experiment_rfor/score.py'
+        //             }
 
-                    post {
+        //             post {
 
-                    success {
-                            echo 'Score code file successfully validated!'
-                        }
+        //             success {
+        //                     echo 'Score code file successfully validated!'
+        //                 }
 
-                    failure {
-                            echo 'Code failed the Validation test, please see logs.'
-                        }
-                    }
-                }
+        //             failure {
+        //                     echo 'Code failed the Validation test, please see logs.'
+        //                 }
+        //             }
+        //         }
 
-                stage('Validate Train Code') {
+        //         stage('Validate Train Code') {
 
-                    agent {
-                        docker {
-                            image 'python:3-alpine' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'python:3-alpine' 
+        //                 }
+        //             }
 
-                    steps {
-                        sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
-                    }
+        //             steps {
+        //                 sh 'python -m py_compile project/2_DevLab/experiment_rfor/train.py'
+        //             }
 
-                    post {
+        //             post {
 
-                    success {
-                            echo 'Train code file successfully validated!'
-                        }
+        //             success {
+        //                     echo 'Train code file successfully validated!'
+        //                 }
 
-                    failure {
-                            echo 'Code failed the Validation test, please see logs.'
-                        }
-                    }
-                }
-            }
-        }
+        //             failure {
+        //                     echo 'Code failed the Validation test, please see logs.'
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('Unit Test for Score code') {
+        // stage('Unit Test for Score code') {
 
-            agent {
-                docker {
-                    image 'in92/devops_pyunit:v1.1' 
-                    }
-            }
+        //     agent {
+        //         docker {
+        //             image 'in92/devops_pyunit:v1.1' 
+        //             }
+        //     }
 
-            steps {
-                sh 'python project/3_CI_CD/3_unit_test/unit_test_pipeline.py project/2_DevLab/experiment_rfor/rfor_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
-            }
+        //     steps {
+        //         sh 'python project/3_CI_CD/3_unit_test/unit_test_pipeline.py project/2_DevLab/experiment_rfor/rfor_pipeline.pickle project/3_CI_CD/3_unit_test/test.csv result.csv'
+        //     }
 
-            post {
+        //     post {
 
-                success {
-                        echo 'Score code file successfully passed Unit Test!'
-                    }
+        //         success {
+        //                 echo 'Score code file successfully passed Unit Test!'
+        //             }
 
-                failure {
-                        echo 'Code failed the Unit test, please see logs.'
-                    }
-            }
+        //         failure {
+        //                 echo 'Code failed the Unit test, please see logs.'
+        //             }
+        //     }
 
-        }
+        // }
 
         stage('Integration test for Score code') {
 
@@ -224,85 +224,85 @@ pipeline {
             // }
         }
 
-        stage('Model MetaData Quality Test') {
+        // stage('Model MetaData Quality Test') {
 
-            parallel {
+        //     parallel {
 
-                stage('Validate inputVar.json file') {
+        //         stage('Validate inputVar.json file') {
 
-                    agent {
-                        docker {
-                            image 'python:3-alpine' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'python:3-alpine' 
+        //                 }
+        //             }
 
-                    steps {
-                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/inputVar.json"
-                    }
+        //             steps {
+        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/inputVar.json"
+        //             }
 
-                    post {
+        //             post {
 
-                    success {
-                            echo 'inputVar.json file successfully validated!'
-                        }
+        //             success {
+        //                     echo 'inputVar.json file successfully validated!'
+        //                 }
 
-                    failure {
-                            echo 'inputVar.json file failed the quality test, please see review them.'
-                        }
-                    }
-                }
+        //             failure {
+        //                     echo 'inputVar.json file failed the quality test, please see review them.'
+        //                 }
+        //             }
+        //         }
 
-                stage('Validate outputVar.json file') {
+        //         stage('Validate outputVar.json file') {
 
-                    agent {
-                        docker {
-                            image 'python:3-alpine' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'python:3-alpine' 
+        //                 }
+        //             }
 
-                    steps {
-                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/outputVar.json"
-                    }
+        //             steps {
+        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/outputVar.json"
+        //             }
 
-                    post {
+        //             post {
 
-                    success {
-                            echo 'outputVar.json file successfully validated!'
-                        }
+        //             success {
+        //                     echo 'outputVar.json file successfully validated!'
+        //                 }
 
-                    failure {
-                            echo 'outputVar.json file failed the quality test, please see review them.'
-                        }
-                    }
+        //             failure {
+        //                     echo 'outputVar.json file failed the quality test, please see review them.'
+        //                 }
+        //             }
 
-                }
+        //         }
 
-                stage('Validate fileMetadata.json file') {
+        //         stage('Validate fileMetadata.json file') {
 
-                    agent {
-                        docker {
-                            image 'python:3-alpine' 
-                        }
-                    }
+        //             agent {
+        //                 docker {
+        //                     image 'python:3-alpine' 
+        //                 }
+        //             }
 
-                    steps {
-                        sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/fileMetadata.json"
-                    }
+        //             steps {
+        //                 sh "python -c 'import sys,json; json.load(sys.stdin)' < project/2_DevLab/experiment_rfor/fileMetadata.json"
+        //             }
 
-                    post {
+        //             post {
 
-                    success {
-                            echo 'fileMetadata.json file successfully validated!'
-                        }
+        //             success {
+        //                     echo 'fileMetadata.json file successfully validated!'
+        //                 }
 
-                    failure {
-                            echo 'fileMetadata.json file failed the quality test, please see review them.'
-                        }
-                    }
+        //             failure {
+        //                     echo 'fileMetadata.json file failed the quality test, please see review them.'
+        //                 }
+        //             }
 
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
 
         // stage('SAS Model Manager Repo service') {
 
