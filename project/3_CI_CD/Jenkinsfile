@@ -141,7 +141,7 @@ pipeline {
 
                 // stage("Run tests") {
 
-                    // agent any
+                    agent any
 
                     // }
 
