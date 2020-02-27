@@ -150,7 +150,8 @@ pipeline {
                                     
                                     sh("ls project/3_CI_CD/4_integration_test/model")
                                 }
-
+                            }
+                        }
 
                     }
 
