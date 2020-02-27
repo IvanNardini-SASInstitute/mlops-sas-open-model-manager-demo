@@ -156,31 +156,33 @@ pipeline {
                     //     sh 'echo HELLOOOOOOOO'
                     // }
                     
-                    // steps {
-
-                    //     script {
-
-                    //         docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
-                    //                 sh("pwd")
-                    //                 sh("ls")
-                    //                 sh("cd ./project/3_CI_CD/4_integration_test/model")
-                    //                 sh("which python")
-                    //                 // sh("python -W ignore ContainerWrapper.py -i ivnard_sample.csv -o 1582581595.089225.csv")
-                    //                 // sh(returnStdout: true, script: "if test -f '1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
-                    //                 // sh("cat 1582581595.089225.csv")
-                    //             }
-                    //         }
-                    //     }
-
                     steps {
 
                         script {
 
-                            docker.image('in92/devops_omm_intest:v1.1').withRun('') { test ->
-                                docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
+                            docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
+                                    docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
+                                    sh("pwd")
+                                    sh("ls")
+                                    sh("cd ./project/3_CI_CD/4_integration_test/model")
+                                    sh("which python")
+                                    // sh("python -W ignore ContainerWrapper.py -i ivnard_sample.csv -o 1582581595.089225.csv")
+                                    // sh(returnStdout: true, script: "if test -f '1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
+                                    // sh("cat 1582581595.089225.csv")
+                                    }
                                 }
                             }
                         }
+
+                    // steps {
+
+                    //     script {
+
+                    //         docker.image('in92/devops_omm_intest:v1.1').withRun('') { test ->
+                    //             docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
+                    //             }
+                    //         }
+                    //     }
 
                     //         docker.image('in92/devops_omm_intest:v1.1').inside("--workdir=/home/test --link ${test.id}:test_score") {
 
