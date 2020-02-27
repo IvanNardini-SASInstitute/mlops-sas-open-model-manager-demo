@@ -165,10 +165,10 @@ pipeline {
                     // steps {
 
                     //     sh "python --version"
-                        sh("ls project/3_CI_CD/4_integration_test/model")
-                        sh("python -W ignore ContainerWrapper.py -i project/3_CI_CD/4_integration_test/model/ivnard_sample.csv -o 1582581595.089225.csv")
-                        sh(returnStdout: true, script: "if test -f 'project/3_CI_CD/4_integration_test/model/1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
-                        sh("cat project/3_CI_CD/4_integration_test/model/1582581595.089225.csv")
+                    //     // sh("ls project/3_CI_CD/4_integration_test/model")
+                    //     // sh("python -W ignore ContainerWrapper.py -i project/3_CI_CD/4_integration_test/model/ivnard_sample.csv -o 1582581595.089225.csv")
+                    //     // sh(returnStdout: true, script: "if test -f 'project/3_CI_CD/4_integration_test/model/1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
+                    //     // sh("cat project/3_CI_CD/4_integration_test/model/1582581595.089225.csv")
                     // }
 
                     steps {
@@ -176,13 +176,9 @@ pipeline {
                         script {
 
                             docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
-
-                                sh("cd project/3_CI_CD/4_integration_test/model")
-                                sh("pwd")
-                                // sh("python -W ignore ContainerWrapper.py -i project/3_CI_CD/4_integration_test/model/ivnard_sample.csv -o 1582581595.089225.csv")
-                                // sh(returnStdout: true, script: "if test -f 'project/3_CI_CD/4_integration_test/model/1582581595.089225.csv'; then echo 'The image scores successfully!'; else echo 'Something wrong with container. Check the logs!'; exit 1; fi")
-                                // sh("cat project/3_CI_CD/4_integration_test/model/1582581595.089225.csv")
-
+                                    sh("pwd")
+                                    sh("ls")
+                                    sh("cd ./project/3_CI_CD/4_integration_test/model")
                                 }
                             }
                         }
