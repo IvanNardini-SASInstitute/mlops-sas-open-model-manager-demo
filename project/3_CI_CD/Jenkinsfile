@@ -148,7 +148,7 @@ pipeline {
                     agent {
                         docker {
                             image 'in92/devops_omm_intest:v1.2'
-                            args "--name integrationtest -p 9999:9999 --entrypoint='/bin/bash startServer.sh'"
+                            args "--name integrationtest -p 9999:9999"
                         }
                     }
 
