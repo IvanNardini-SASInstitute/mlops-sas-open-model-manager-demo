@@ -179,6 +179,8 @@ pipeline {
                             docker.image('in92/devops_omm_intest:v1.1').withRun('') { test ->
                                 docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
                                 }
+                            }
+                        }
 
                     //         docker.image('in92/devops_omm_intest:v1.1').inside("--workdir=/home/test --link ${test.id}:test_score") {
 
