@@ -145,9 +145,9 @@ pipeline {
 
                         script {
 
-                            docker.image('in92/devops_omm_intest:v1.1').withRun('-p 9999:9999') { test ->
-                                docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh") {
-                                    
+                            docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
+                                docker.image('in92/devops_omm_intest:v1.2').inside("-u 0 --entrypoint='/pybox/app/startServer.sh'") {
+
                                     sh("python --version")
                                 }
                             }
