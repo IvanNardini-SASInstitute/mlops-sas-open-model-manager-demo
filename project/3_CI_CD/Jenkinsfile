@@ -136,7 +136,7 @@ pipeline {
         // }
 
         stage('Integration test for Score code') {
-
+            
             // parallel{
 
                 // stage("Run tests") {
