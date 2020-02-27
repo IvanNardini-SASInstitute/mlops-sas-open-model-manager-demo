@@ -1,7 +1,7 @@
 
 import pandas as pd
 import joblib
-import settings
+#import settings
 
 def score (CLAGE, CLNO, DEBTINC, DELINQ, DEROG, JOB, LOAN, MORTDUE, NINQ, REASON, VALUE, YOJ):
     "Output: P_BAD0, P_BAD1"
@@ -9,7 +9,8 @@ def score (CLAGE, CLNO, DEBTINC, DELINQ, DEROG, JOB, LOAN, MORTDUE, NINQ, REASON
     try:
        _thisModelFit
     except NameError:
-        with open(settings.pickle_path + "rfor_pipeline.pickle", 'rb') as _pFile:
+    #settings.pickle_path + 
+        with open("./project/3_CI_CD/4_integration_test/model/rfor_pipeline.pickle", 'rb') as _pFile:
             _thisModelFit = joblib.load(_pFile)
 
     # Construct the input array for scoring (the first term is for the Intercept)
