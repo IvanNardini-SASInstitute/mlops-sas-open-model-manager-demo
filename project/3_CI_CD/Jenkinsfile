@@ -148,7 +148,7 @@ pipeline {
                     agent {
                         docker {
                             image 'in92/devops_omm_intest:v1.3'
-                            args "-p 9999:9999"
+                            // args "-p 9999:9999"
                         }
                     }
 
