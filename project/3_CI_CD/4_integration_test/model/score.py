@@ -5,7 +5,8 @@ import settings
 
 print(settings.pickle_path)
 
-# def score (CLAGE, CLNO, DEBTINC, DELINQ, DEROG, JOB, LOAN, MORTDUE, NINQ, REASON, VALUE, YOJ):
+def score (CLAGE, CLNO, DEBTINC, DELINQ, DEROG, JOB, LOAN, MORTDUE, NINQ, REASON, VALUE, YOJ):
+    print('suca')
 #     "Output: P_BAD0, P_BAD1"
     
 #     try:
