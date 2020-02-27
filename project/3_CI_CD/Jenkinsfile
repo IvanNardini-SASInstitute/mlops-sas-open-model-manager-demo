@@ -160,8 +160,8 @@ pipeline {
 
                         script {
 
-                            docker.image('in92/devops_omm_intest:v1.2').withRun('') { test ->
-                                    docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 -p 9999:9999 --entrypoint='/bin/bash startServer.sh' --link ${test.id}:test_score") {
+                            docker.image('in92/devops_omm_intest:v1.2').withRun('-p 9999:9999') { test ->
+                                    docker.image('in92/devops_omm_intest:v1.1').inside("-u 0 --entrypoint=/pybox/app/startServer.sh") {
                                     sh("pwd")
                                     sh("ls")
                                     sh("cd ./project/3_CI_CD/4_integration_test/model")
