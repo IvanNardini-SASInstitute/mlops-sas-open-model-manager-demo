@@ -148,7 +148,7 @@ pipeline {
                     agent {
                         docker {
                             image 'in92/devops_omm_intest:v1.2'
-                            args "-p 9999:9999 tail -f /dev/null"
+                            args "-p 9999:9999 --entrypoint='tail -f /dev/null'"
                         }
                     }
 
