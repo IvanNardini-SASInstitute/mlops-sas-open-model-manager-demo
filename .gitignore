@@ -4,5 +4,4 @@ project/.local/share/jupyter
 PublishModelCreatePrivateDockerDestination.ipynb
 QuickStartTutorial
 slides
-ContainerWrapper.py
 0_MODELOPS_OMM_DEMO.zip
