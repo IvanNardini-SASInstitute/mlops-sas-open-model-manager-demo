@@ -160,8 +160,7 @@ pipeline {
                             image 'in92/devops_omm_intest:v1.2'
                             args "-u 0 -p 9999:9999"
                         }
-                     }
-
+                    }
                     // steps {
 
                     //     sh "python --version"
