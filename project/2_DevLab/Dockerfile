@@ -94,6 +94,7 @@ RUN cd /tmp && \
 #     make -j4 && \
 #     cd python-package; python setup.py install
 
+# ==0.90
 RUN pip install xgboost
 
 # Install SAS Swat package
