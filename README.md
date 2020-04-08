@@ -38,7 +38,7 @@ In particular, I'll show
 
 Below the **high-level architecture of the solution**: 
 
-<img src="https://github.com/IvanNardini/ModelOps_OMM/raw/master/Solution_Architecture.PNG">
+<img src="https://github.com/IvanNardini/ModelOps_OMM/raw/master/Solution_Architecture.png">
 
 ## Requirements
 
