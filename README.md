@@ -1,7 +1,7 @@
 # SAS for Model Ops
 # A dockerized ModelOps Environment with SAS Open Model Manager
 
-<img src="https://github.com/IvanNardini/ModelOps_OMM/raw/master/Operationalize_Analytics.PNG">
+<img src="https://github.com/IvanNardini-SASInstitute/mlops-sas-open-model-manager-demo/raw/master/Operationalize_Analytics.PNG">
 
 ## Covered functionality
 
@@ -38,7 +38,7 @@ In particular, I'll show
 
 Below the **high-level architecture of the solution**: 
 
-<img src="https://github.com/IvanNardini/ModelOps_OMM/raw/master/Solution_Architecture.png">
+<img src="https://github.com/IvanNardini-SASInstitute/mlops-sas-open-model-manager-demo/raw/master/Solution_Architecture.png">
 
 ## Requirements
 
